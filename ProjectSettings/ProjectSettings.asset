@@ -4,7 +4,7 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 28
-  productGUID: 394de9adea8cf314b9d6d56ab16f0055
+  productGUID: 63b0f1f3478c93142ba2471674ba7c49
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -847,7 +847,7 @@ PlayerSettings:
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
   metroPackageName: MyProject
-  metroPackageVersion: 
+  metroPackageVersion: 1.0.0.0
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
@@ -855,7 +855,7 @@ PlayerSettings:
   metroCertificateNotAfter: 0000000000000000
   metroApplicationDescription: MyProject
   wsaImages: {}
-  metroTileShortName: 
+  metroTileShortName: MyProject
   metroTileShowName: 0
   metroMediumTileShowName: 0
   metroLargeTileShowName: 0
@@ -922,13 +922,13 @@ PlayerSettings:
   qnxGraphicConfPath: 
   apiCompatibilityLevel: 6
   captureStartupLogs: {}
-  activeInputHandler: 1
+  activeInputHandler: 2
   windowsGamepadBackendHint: 0
-  cloudProjectId: 1e1e38e3-cc3f-47ac-8047-f60e4a6bd364
+  cloudProjectId: f59e48fb-930d-4b42-82d8-1447c272e58f
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
   projectName: MyProject
-  organizationId: unity_51f8218314ba2c1bb4ad
+  organizationId: nattapongbuphu
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}
