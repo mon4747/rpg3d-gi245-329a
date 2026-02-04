@@ -1,3 +1,4 @@
+using System.Data;
 using UnityEngine;
 
 public class LeftClick : MonoBehaviour
@@ -13,6 +14,17 @@ public class LeftClick : MonoBehaviour
     [SerializeField]
     private LayerMask layerMask;
 
+    private void ClearRingSelection()
+    {
+        curChar.ToggleRingSelection(false);
+    }
+
+    private void ClearEverything()
+    {
+        ClearRingSelection();
+        curChar = null;
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -25,6 +37,10 @@ public class LeftClick : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetMouseButtonDown(0))
+        {
+            ClearEverything();
+        }
         // mouse up
         if (Input.GetMouseButtonUp(0))
         {
@@ -35,6 +51,9 @@ public class LeftClick : MonoBehaviour
     {
         curChar = hit.collider.GetComponent<Character>();
         Debug.Log("Selected Char" + hit.collider.gameObject);
+
+        if (curChar != null) 
+            curChar.ToggleRingSelection(true);
     }
 
     private void TrySelect(Vector3 screenPos)

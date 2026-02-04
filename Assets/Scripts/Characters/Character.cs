@@ -29,6 +29,10 @@ public abstract class Character : MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
+    [SerializeField]
+    protected GameObject ringSelection;
+    public GameObject RingSelection { get { return ringSelection; } }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -68,5 +72,9 @@ public abstract class Character : MonoBehaviour
 
         if (distance <= navAgent.stoppingDistance)
             SetState(CharState.Idle);
+    }
+    public void ToggleRingSelection(bool flag)
+    {
+        ringSelection.SetActive(flag);
     }
 }
