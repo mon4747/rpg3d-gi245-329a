@@ -1,6 +1,6 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
-
 public enum CharState
 {
     Idle,
@@ -19,15 +19,23 @@ public abstract class Character : MonoBehaviour
 
     [SerializeField]
     protected Character curCharTarget;
+    public Character CurCharTarget { get { return curCharTarget; } set { curCharTarget = value; } }
+    public float AttackRange { get { return attackRange; } }
 
     [SerializeField]
     protected float attackRange = 2f;
+    [SerializeField]
+    protected float attackDamage = 3;
 
     [SerializeField]
     protected float attackCoolDown = 2f;
 
     [SerializeField]
     protected float attackTimer = 0;
+
+    [SerializeField]
+    protected float findingRange = 20f;
+    public float FindingRange { get { return findingRange; } }
 
 
     protected NavMeshAgent navAgent;
@@ -131,7 +139,7 @@ public abstract class Character : MonoBehaviour
 
         anim.SetTrigger("Attack");
 
-      //AttackLogic();
+        AttackLogic();
     }
 
     protected void AttackUpdate()
@@ -165,8 +173,58 @@ public abstract class Character : MonoBehaviour
 
     }
 
+    protected virtual IEnumerator DestroyObject()
+    {
+        yield return new WaitForSeconds(5f);
+        Destroy(gameObject);
+    }
+
+    protected virtual void Die()
+    {
+        navAgent.isStopped = true;
+        SetState(CharState.Die);
+
+        anim.SetTrigger("Die");
+        StartCoroutine(DestroyObject());
+    }
+
+    public void ReceiveDamage(Character enemy)
+    {
+        if (curHP <= 0 || state == CharState.Die)
+            return;
+
+        curHP -= (int)enemy.attackDamage;
+        if (curHP <= 0)
+        {
+            curHP = 0;
+            Die();
+        }
+    }
+
+    protected void AttackLogic()
+    {
+        Character target = curCharTarget.GetComponent<Character>();
+
+        if (target != null)
+            target.ReceiveDamage(this);
+    }
+
     public void ToggleRingSelection(bool flag)
     {
         ringSelection.SetActive(flag);
+    }
+
+    public bool IsmyEnemy(string targetTag)
+    {
+        string myTag = gameObject.tag;
+
+        if ((myTag == "Hero" || myTag == "Player") && targetTag == "Enemy")
+            return true;
+
+        if (myTag == "Enemy" && (targetTag == "Hero" || targetTag == "Player"))
+            return true;
+
+        return false;
+
     }
 }

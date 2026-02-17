@@ -197,6 +197,9 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 162860, guid: 88f747c19931a4f4f9e4d9bccdcd8225, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 1814587286}
+    - targetCorrespondingSourceObject: {fileID: 162860, guid: 88f747c19931a4f4f9e4d9bccdcd8225, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 1814587281}
   m_SourcePrefab: {fileID: 100100000, guid: 88f747c19931a4f4f9e4d9bccdcd8225, type: 3}
 --- !u!1001 &86445008
@@ -800,7 +803,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 131680, guid: a68b7fcda6e7fad4d8683b3324733344, type: 3}
+      insertIndex: 4
+      addedObject: {fileID: 1760668938}
   m_SourcePrefab: {fileID: 100100000, guid: a68b7fcda6e7fad4d8683b3324733344, type: 3}
 --- !u!1001 &511851116
 PrefabInstance:
@@ -865,6 +871,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 112422, guid: beb6da6128d27f84eb97a0b858cf822d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 787184185}
+    - targetCorrespondingSourceObject: {fileID: 112422, guid: beb6da6128d27f84eb97a0b858cf822d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 787184186}
   m_SourcePrefab: {fileID: 100100000, guid: beb6da6128d27f84eb97a0b858cf822d, type: 3}
 --- !u!1001 &517790245
 PrefabInstance:
@@ -1053,6 +1062,19 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &787184186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 787184179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9ba1c00e8f1c6e48b74e949e2ea6171, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AttackAI
+  curEnemy: {fileID: 0}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -2112,6 +2134,24 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 39b63f09de6a49acb8aac784141edeaa, type: 3}
+--- !u!1 &1760668931 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 131680, guid: a68b7fcda6e7fad4d8683b3324733344, type: 3}
+  m_PrefabInstance: {fileID: 479744231}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1760668938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1760668931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9ba1c00e8f1c6e48b74e949e2ea6171, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AttackAI
+  curEnemy: {fileID: 0}
 --- !u!1001 &1789385099
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2202,6 +2242,19 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &1814587286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 350190521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9ba1c00e8f1c6e48b74e949e2ea6171, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AttackAI
+  curEnemy: {fileID: 0}
 --- !u!1 &1869632036
 GameObject:
   m_ObjectHideFlags: 0
