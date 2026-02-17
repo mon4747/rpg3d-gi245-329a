@@ -5,6 +5,7 @@ public enum CharState
 {
     Idle,
     Walk,
+    WalkToEnemy,
     Attack,
     Hit,
     Die
@@ -12,6 +13,23 @@ public enum CharState
 
 public abstract class Character : MonoBehaviour
 {
+    [SerializeField]
+    protected int curHP = 10;
+    public int CurHP { get { return curHP; } }
+
+    [SerializeField]
+    protected Character curCharTarget;
+
+    [SerializeField]
+    protected float attackRange = 2f;
+
+    [SerializeField]
+    protected float attackCoolDown = 2f;
+
+    [SerializeField]
+    protected float attackTimer = 0;
+
+
     protected NavMeshAgent navAgent;
 
     protected Animator anim;
@@ -73,6 +91,80 @@ public abstract class Character : MonoBehaviour
         if (distance <= navAgent.stoppingDistance)
             SetState(CharState.Idle);
     }
+
+    public void ToAttackCharacter(Character target)
+    {
+        if (curHP <= 0 || state == CharState.Die)
+            return;
+        curCharTarget = target;
+
+        navAgent.SetDestination(target.transform.position);
+        navAgent.isStopped = false;
+
+        SetState(CharState.WalkToEnemy);
+    }
+
+    protected void WalkToEnemyUpdate()
+    {
+        if (curCharTarget == null)
+        {
+            SetState(CharState.Idle);
+            return;
+        }
+
+        navAgent.SetDestination(curCharTarget.transform.position);
+
+        float distance = Vector3.Distance
+            (transform.position, curCharTarget.transform.position);
+
+        if (distance <= attackRange)
+        {
+            SetState(CharState.Attack);
+            Attack();
+
+        }
+    }
+
+     protected void Attack()
+    {
+        transform.LookAt(transform.position);
+
+        anim.SetTrigger("Attack");
+
+      //AttackLogic();
+    }
+
+    protected void AttackUpdate()
+    {
+        if (curCharTarget == null)
+            return;
+
+        if (curCharTarget.CurHP <= 0)
+        {
+
+            SetState(CharState.Idle);
+            return;
+        }
+        navAgent.isStopped = true;
+        attackTimer += Time.deltaTime;
+        if (attackTimer >= attackCoolDown)
+        {
+            attackTimer = 0f;
+            Attack();
+        }
+
+        float distance = Vector3.Distance(transform.position, curCharTarget.transform.position);
+
+        if (distance > attackRange)
+        {
+            SetState(CharState.WalkToEnemy);
+            navAgent.SetDestination(curCharTarget.transform.position);
+            navAgent.isStopped = false;
+        }
+
+
+    }
+
     public void ToggleRingSelection(bool flag)
     {
         ringSelection.SetActive(flag);
