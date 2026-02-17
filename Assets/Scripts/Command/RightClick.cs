@@ -10,6 +10,7 @@ public class RightClick : MonoBehaviour
     public LayerMask layerMask; 
     private LeftClick leftClick; 
 
+
     
     void Awake()
     {
@@ -34,13 +35,15 @@ public class RightClick : MonoBehaviour
         }
     }
 
+
     
     private void TryCommand(Vector2 screenPos)
     {
         Ray ray = cam.ScreenPointToRay(screenPos);
         RaycastHit hit;
 
-        
+
+
         if (Physics.Raycast(ray, out hit, 1000, layerMask))
         {
             switch (hit.collider.tag)
@@ -52,6 +55,13 @@ public class RightClick : MonoBehaviour
             }
         }
     }
+    private void CreateVFX(Vector3 pos, GameObject vfxPrefab)
+    {
+        if (vfxPrefab == null)
+            return;
+        Instantiate(vfxPrefab,
+            pos + new Vector3(0f, 1f, 0f), Quaternion.identity);
+    }
 
     // 14.4. สร้างเมธอดสำหรับสั่งตัวละครเดินขึ้นมา
     private void CommandToWalk(RaycastHit hit, Character c)
@@ -60,5 +70,8 @@ public class RightClick : MonoBehaviour
         {
             c.WalkToPosition(hit.point);
         }
+
+        CreateVFX(hit.point, VFXManager.instance.DoubleRingMarker);
+
     }
 }
