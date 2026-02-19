@@ -1,41 +1,48 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
+
 
 public class RightClick : MonoBehaviour
 {
-    
+    private Camera cam;
+    public LayerMask layerMask;
+
+    //private LeftClick leftClick;
+
     public static RightClick instance;
 
-    
-    private Camera cam; 
-    public LayerMask layerMask; 
-    private LeftClick leftClick; 
+    //private void Awake()
+    //{
+    //    leftClick = GetComponent<LeftClick>();
+    //}
 
-
-    
-    void Awake()
-    {
-        
-        leftClick = GetComponent<LeftClick>();
-    }
-
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        instance = this; 
-        cam = Camera.main; 
+        instance = this;
+        cam = Camera.main;
         layerMask = LayerMask.GetMask("Ground", "Character", "Building");
     }
 
-    
+    // Update is called once per frame
     void Update()
     {
-        
         if (Input.GetMouseButtonUp(1))
         {
             TryCommand(Input.mousePosition);
         }
     }
 
+    private void CommandToWalk(RaycastHit hit, List<Character> heroes)
+    {
+        foreach (Character h in heroes)
+        {
+            if (h != null)
+                h.WalkToPosition(hit.point);
+        }
 
+        CreateVFX(hit.point, VFXManager.instance.DoubleRingMarker);
+    }
 
     private void TryCommand(Vector2 screenPos)
     {
@@ -47,15 +54,16 @@ public class RightClick : MonoBehaviour
             switch (hit.collider.tag)
             {
                 case "Ground":
-                    CommandToWalk(hit, leftClick.CurChar);
+                    CommandToWalk(hit, PartyManager.instance.SelectChars);
                     break;
                 case "Enemy":
-                    CommandToAttack(hit, leftClick.CurChar);
+                    CommandToAttack(hit, PartyManager.instance.SelectChars);
                     break;
             }
         }
 
     }
+
     private void CreateVFX(Vector3 pos, GameObject vfxPrefab)
     {
         if (vfxPrefab == null)
@@ -64,27 +72,17 @@ public class RightClick : MonoBehaviour
             pos + new Vector3(0f, 1f, 0f), Quaternion.identity);
     }
 
-    private void CommandToAttack(RaycastHit hit, Character c)
+    private void CommandToAttack(RaycastHit hit, List<Character> heroes)
     {
-        if (c == null)
-            return;
 
         Character target = hit.collider.GetComponent<Character>();
         Debug.Log("Attack: " + target);
 
-        if (target != null)
-            c.ToAttackCharacter(target);
-    }
-
-    // 14.4. สร้างเมธอดสำหรับสั่งตัวละครเดินขึ้นมา
-    private void CommandToWalk(RaycastHit hit, Character c)
-    {
-        if (c!= null)
+        foreach (Character h in heroes)
         {
-            c.WalkToPosition(hit.point);
+            h.ToAttackCharacter(target);
         }
-
-        CreateVFX(hit.point, VFXManager.instance.DoubleRingMarker);
-
     }
+
+
 }
