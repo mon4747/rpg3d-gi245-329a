@@ -21,12 +21,58 @@ public class PartyManager : MonoBehaviour
 
     void Start()
     {
+        foreach (Character c in members)
+        {
+            c.charInit(VFXManager.instance, UIManager.instance);
+
+
+        }
+
+        SelectSingleHero(0);
+
+        members[0].MagicSkills.Add(new Magic(0, "Power Glow", 10f, 20, 3f, 1f, 2, 2));
+        members[0].MagicSkills.Add(new Magic(1, "Power Draw", 10f, 20, 3f, 1f, 0, 0));
+        members[0].MagicSkills.Add(new Magic(2, "Smoke_Black", 10f, 20, 3f, 1f, 4, 4));
+
+        members[1].MagicSkills.Add(new Magic(0, "Fireball", 10f, 20, 3f, 1f, 1, 1));
+        members[1].MagicSkills.Add(new Magic(1, "Fire Big", 10f, 35, 3f, 4f, 1, 3));
+        members[1].MagicSkills.Add(new Magic(2, "Fireflies", 10f, 35, 3f, 4f, 4, 4));
+
+
+
+
+        UIManager.instance.ShowMagicToggles();
+
+
 
     }
-
     // Update is called once per frame
     void Update()
     {
+        //if (selectChars.Count > 0)
+        //{
+        //    selectChars[0].IsMagicMode = true;
+        //    selectChars[0].CurMagicCast = selectChars[0].MagicSkills[0];
+        //}
+    }
 
+    public void SelectSingleHero(int i)
+    {
+        foreach (Character c in selectChars)
+            c.ToggleRingSelection(false);
+
+        selectChars.Clear();
+
+        selectChars.Add(members[i]);
+        selectChars[0].ToggleRingSelection(true);
+    }
+
+    public void HeroSelectMagicSkill(int i)
+    {
+        if (selectChars.Count <= 0)
+            return;
+
+        selectChars[0].IsMagicMode = true;
+        selectChars[0].CurMagicCast = selectChars[0].MagicSkills[i];
     }
 }
