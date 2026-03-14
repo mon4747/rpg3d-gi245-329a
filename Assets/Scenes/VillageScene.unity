@@ -8458,7 +8458,7 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 456
-  boxSelection: {fileID: 0}
+  boxSelection: {fileID: 1382348026}
 --- !u!114 &1505808280
 MonoBehaviour:
   m_ObjectHideFlags: 0
