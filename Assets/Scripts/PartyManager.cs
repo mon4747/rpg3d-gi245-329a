@@ -24,8 +24,6 @@ public class PartyManager : MonoBehaviour
         foreach (Character c in members)
         {
             c.charInit(VFXManager.instance, UIManager.instance);
-
-
         }
 
         SelectSingleHero(0);
@@ -33,12 +31,22 @@ public class PartyManager : MonoBehaviour
         members[0].MagicSkills.Add(new Magic(VFXManager.instance.MagicDatas[0]));
         members[1].MagicSkills.Add(new Magic(VFXManager.instance.MagicDatas[1]));
 
+        InventoryManager.instance.AddItem(members[0], 0); // Health Potion
+        InventoryManager.instance.AddItem(members[0], 1); // Sword
+        InventoryManager.instance.AddItem(members[0], 3);
+        InventoryManager.instance.AddItem(members[0], 4);
+        InventoryManager.instance.AddItem(members[0], 5);
 
+        InventoryManager.instance.AddItem(members[1], 0); // Health Potion
+        InventoryManager.instance.AddItem(members[1], 1); // Sword
+        InventoryManager.instance.AddItem(members[1], 2); // Shield
+        InventoryManager.instance.AddItem(members[1], 6);
+        InventoryManager.instance.AddItem(members[1], 7);
+        InventoryManager.instance.AddItem(members[1], 8);
+        InventoryManager.instance.AddItem(members[1], 9);
 
 
         UIManager.instance.ShowMagicToggles();
-
-
 
     }
     // Update is called once per frame

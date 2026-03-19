@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MagicData
   id: 0
   magicName: Power Glow
+  icon: {fileID: 21300000, guid: c703cffa39f660e4ba91cad1bc35f7e5, type: 3}
   range: 10
   power: 20
   loadTime: 3
