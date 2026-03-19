@@ -30,13 +30,8 @@ public class PartyManager : MonoBehaviour
 
         SelectSingleHero(0);
 
-        members[0].MagicSkills.Add(new Magic(0, "Power Glow", 10f, 20, 3f, 1f, 2, 2));
-        members[0].MagicSkills.Add(new Magic(1, "Power Draw", 10f, 20, 3f, 1f, 0, 0));
-        members[0].MagicSkills.Add(new Magic(2, "Smoke_Black", 10f, 20, 3f, 1f, 4, 4));
-
-        members[1].MagicSkills.Add(new Magic(0, "Fireball", 10f, 20, 3f, 1f, 1, 1));
-        members[1].MagicSkills.Add(new Magic(1, "Fire Big", 10f, 35, 3f, 4f, 1, 3));
-        members[1].MagicSkills.Add(new Magic(2, "Fireflies", 10f, 35, 3f, 4f, 4, 4));
+        members[0].MagicSkills.Add(new Magic(VFXManager.instance.MagicDatas[0]));
+        members[1].MagicSkills.Add(new Magic(VFXManager.instance.MagicDatas[1]));
 
 
 

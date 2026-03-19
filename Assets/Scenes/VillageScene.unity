@@ -8458,7 +8458,7 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 456
-  boxSelection: {fileID: 0}
+  boxSelection: {fileID: 1382348026}
 --- !u!114 &1505808280
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8478,6 +8478,9 @@ MonoBehaviour:
   - {fileID: 1739096776086156, guid: 31a7090325140644ca913f01732844c8, type: 3}
   - {fileID: 1242912157399330, guid: 33bc6ab05c3b4c84082703d838d0da2d, type: 3}
   - {fileID: 1707441736110878, guid: 0976cb62d28bc5441a15dea62b440104, type: 3}
+  magicDatas:
+  - {fileID: 11400000, guid: ba48f716089c3db4abd59bfe35a3265e, type: 2}
+  - {fileID: 11400000, guid: d02a685aa0faaae45a061bb35fc4fbf6, type: 2}
 --- !u!114 &1505808281
 MonoBehaviour:
   m_ObjectHideFlags: 0

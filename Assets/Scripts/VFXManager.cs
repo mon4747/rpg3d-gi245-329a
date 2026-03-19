@@ -11,6 +11,10 @@ public class VFXManager : MonoBehaviour
     private GameObject[] magicVFX;
     public GameObject[] MagicVFX { get { return magicVFX; } }
 
+    [SerializeField]
+    private MagicData[] magicDatas;
+    public MagicData[] MagicDatas {  get { return magicDatas; } }
+
     private void Awake()
     {
         instance = this;
