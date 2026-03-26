@@ -49,6 +49,7 @@ public abstract class Character : MonoBehaviour
 
     protected VFXManager vfxManager;
     protected UIManager uiManager;
+    protected InventoryManager invManager;
 
     [SerializeField]
     protected int curHP = 10;
@@ -105,12 +106,13 @@ public abstract class Character : MonoBehaviour
 
     }
 
-    public void charInit(VFXManager vfxM, UIManager uiM)
+    public void charInit(VFXManager vfxM, UIManager uiM, InventoryManager invM)
     {
         vfxManager = vfxM;
         uiManager = uiM;
+        invManager = invM;
 
-        inventoryItems = new Item[16];
+        inventoryItems = new Item[InventoryManager.MAXSLOT];
     }
 
     // Update is called once per frame
@@ -246,6 +248,9 @@ public abstract class Character : MonoBehaviour
         SetState(CharState.Die);
 
         anim.SetTrigger("Die");
+
+        invManager.SpawnDropInventory(inventoryItems, transform.position);
+
         StartCoroutine(DestroyObject());
     }
 

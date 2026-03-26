@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
@@ -24,13 +24,13 @@ public class InventoryManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public bool AddItem(Character character, int id)
@@ -47,5 +47,55 @@ public class InventoryManager : MonoBehaviour
         }
         Debug.Log("Inventory Full");
         return false;
+    }
+
+    public void SaveItemInBag(int index, Item item)
+    {
+        if (PartyManager.instance.SelectChars.Count == 0)
+            return;
+
+        PartyManager.instance.SelectChars[0].InventoryItems[index] = item;
+    }
+
+    public void RemoveItemInBag(int index)
+    {
+        if (PartyManager.instance.SelectChars.Count == 0)
+            return;
+
+        PartyManager.instance.SelectChars[0].InventoryItems[index] = null;
+    }
+
+    private void SpawnDropItem(Item item, Vector3 pos)
+    {
+        int id;
+        switch (item.Type)
+        {
+            case ItemType.Consumable:
+                id = 1;
+                break;
+            default:
+                id = 0;
+                break;
+        }
+
+        // --- ส่วนที่แก้ไข: เพิ่มความสูงให้จุดเกิดไอเทม ---
+        Vector3 spawnPos = new Vector3(pos.x, pos.y + 0.5f, pos.z);
+        // ปรับเลข 0.5f ตามความเหมาะสมจนกว่าปากถุงจะพ้นพื้น
+
+        GameObject itemObj = Instantiate(ItemPrefabs[id], spawnPos, Quaternion.identity);
+        // ------------------------------------------
+
+        itemObj.AddComponent<ItemPick>();
+        ItemPick itemPick = itemObj.GetComponent<ItemPick>();
+        itemPick.Init(item, instance, PartyManager.instance);
+    }
+    public void SpawnDropInventory(Item[] items, Vector3 pos)
+    {
+        for (int i = 0; i < items.Length; i++)
+        {
+            if (items[i] != null)
+                SpawnDropItem(items[i], pos);
+
+        }
     }
 }
