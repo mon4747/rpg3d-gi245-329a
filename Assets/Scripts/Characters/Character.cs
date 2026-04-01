@@ -56,6 +56,10 @@ public abstract class Character : MonoBehaviour
     public int CurHP { get { return curHP; } }
 
     [SerializeField]
+    protected int maxHP = 100;
+    public int MaxHP { get { return maxHP; } }
+
+    [SerializeField]
     protected Character curCharTarget;
     public Character CurCharTarget { get { return curCharTarget; } set { curCharTarget = value; } }
     public float AttackRange { get { return attackRange; } }
@@ -360,6 +364,14 @@ public abstract class Character : MonoBehaviour
 
             MagicCast(curMagicCast);
         }
+    }
+
+    public void Recover(int n)
+    {
+        curHP += n;
+
+        if (curHP > maxHP)
+            curHP = maxHP;
     }
 
 }
