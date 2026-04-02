@@ -40,7 +40,7 @@ public class PartyManager : MonoBehaviour
         InventoryManager.instance.AddItem(members[1], 0); // Health Potion
         InventoryManager.instance.AddItem(members[1], 1); // Sword
         InventoryManager.instance.AddItem(members[1], 2); // Shield
-        InventoryManager.instance.AddItem(members[1], 6);
+        InventoryManager.instance.AddItem(members[1], 3); // Shield B
         InventoryManager.instance.AddItem(members[1], 7);
         InventoryManager.instance.AddItem(members[1], 8);
         InventoryManager.instance.AddItem(members[1], 9);

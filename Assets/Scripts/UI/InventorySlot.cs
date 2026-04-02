@@ -9,6 +9,11 @@ public class InventorySlot : MonoBehaviour, IDropHandler
     { get { return id; } set { id = value; } }
 
     [SerializeField]
+    private ItemType itemType;
+    public ItemType ItemType
+    { get { return itemType; } set { itemType = value; } }
+
+    [SerializeField]
     private InventoryManager inventoryManager;
 
     void Start()
@@ -18,27 +23,49 @@ public class InventorySlot : MonoBehaviour, IDropHandler
 
     public void OnDrop(PointerEventData eventData)
     {
-        //Get Item A
+        // (This instance is Slot B)
+        // Get Item A
         GameObject objA = eventData.pointerDrag;
         ItemDrag itemDragA = objA.GetComponent<ItemDrag>();
         InventorySlot slotA = itemDragA.IconParent.GetComponent<InventorySlot>();
 
-        //Remove Item A from Slot A
-        inventoryManager.RemoveItemInBag(slotA.ID);
+        if (itemType == ItemType.Shield)
+        {
+            if (itemDragA.Item.Type != itemType)
+                return;
+        }
 
-        //There is an Item B in Slot B
+        // There is an Item B in Slot B
         if (transform.childCount > 0)
         {
+            // Get Item B
             GameObject objB = transform.GetChild(0).gameObject;
             ItemDrag itemDragB = objB.GetComponent<ItemDrag>();
 
-            //Set Item B on Slot A
+            if (slotA.ItemType == ItemType.Shield)
+            {
+                if (itemDragB.Item.Type != slotA.ItemType)
+                    return;
+            }
+
+            // Remove Item A from Slot A
+            inventoryManager.RemoveItemInBag(slotA.ID);
+
+            // Set Item B on Slot A
             itemDragB.transform.SetParent(itemDragA.IconParent);
             itemDragB.IconParent = itemDragA.IconParent;
             inventoryManager.SaveItemInBag(slotA.ID, itemDragB.Item);
+
+            // Remove Item B from Slot B
+            inventoryManager.RemoveItemInBag(id);
+        }
+        else // Slot B is blank
+        {
+            // Remove Item A from Slot A
+            inventoryManager.RemoveItemInBag(slotA.ID);
         }
 
-        //Set Item A on Slot B
+        // Set Item A on Slot B
         itemDragA.IconParent = transform;
         inventoryManager.SaveItemInBag(id, itemDragA.Item);
     }
