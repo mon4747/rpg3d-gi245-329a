@@ -10572,6 +10572,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 411526, guid: 46bf1c52d3624c7f815b3faaf29b4d83, type: 3}
   m_PrefabInstance: {fileID: 1573473463}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
 --- !u!1 &1581359033
 GameObject:
   m_ObjectHideFlags: 0
@@ -10648,6 +10649,8 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1581359033}
   m_CullTransparentMesh: 1
+=======
+>>>>>>> parent of d2c8322 (ปุ่มใช้ขวดยา)
 --- !u!1 &1600736979 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8051457037431610260, guid: d11aab3141ec1c84dbcca82cc5eb029d, type: 3}

@@ -379,6 +379,7 @@ public abstract class Character : MonoBehaviour
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     public void Recover(int n)
     {
         curHP += n;
@@ -409,6 +410,8 @@ public abstract class Character : MonoBehaviour
         }
     }
 
+=======
+>>>>>>> parent of d2c8322 (ปุ่มใช้ขวดยา)
 =======
 >>>>>>> parent of d2c8322 (ปุ่มใช้ขวดยา)
 }
