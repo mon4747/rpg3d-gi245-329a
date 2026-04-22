@@ -1,36 +1,25 @@
-﻿using UnityEngine;
+using UnityEngine;
+using static UnityEditor.Progress;
 
 public class InventoryManager : MonoBehaviour
 {
     [SerializeField]
     private GameObject[] itemPrefabs;
-    public GameObject[] ItemPrefabs
+    public GameObject[] itemPrefab
     { get { return itemPrefabs; } set { itemPrefabs = value; } }
 
     [SerializeField]
     private ItemData[] itemData;
-    public ItemData[] ItemData
+    public ItemData[] ItemData 
     { get { return itemData; } set { itemData = value; } }
 
-    public const int MAXSLOT = 17;
+    public const int MAXSLOT = 18;
 
     public static InventoryManager instance;
 
-    void Awake()
+    private void Awake()
     {
         instance = this;
-    }
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     public bool AddItem(Character character, int id)
@@ -45,21 +34,29 @@ public class InventoryManager : MonoBehaviour
                 return true;
             }
         }
+
         Debug.Log("Inventory Full");
         return false;
+
     }
 
-    public void SaveItemInBag(int index, Item item)
+    public void SaveItemBag(int index, Item item)
     {
         if (PartyManager.instance.SelectChars.Count == 0)
+        {
             return;
+
+        }
 
         PartyManager.instance.SelectChars[0].InventoryItems[index] = item;
 
         switch (index)
         {
             case 16:
-                PartyManager.instance.SelectChars[0].EquipShield(item);
+                PartyManager.instance.SelectChars[0].EquipShield(item); 
+                break;
+            case 17:
+                PartyManager.instance.SelectChars[0].EquipWeapon(item); 
                 break;
         }
     }
@@ -70,11 +67,13 @@ public class InventoryManager : MonoBehaviour
             return;
 
         PartyManager.instance.SelectChars[0].InventoryItems[index] = null;
-
         switch (index)
         {
             case 16:
-                PartyManager.instance.SelectChars[0].UnEquipShield();
+                PartyManager.instance.SelectChars[0].UnEquipShieid();
+                break;
+            case 17:
+                PartyManager.instance.SelectChars[0].UnEquipWeapon();
                 break;
         }
     }
@@ -82,34 +81,49 @@ public class InventoryManager : MonoBehaviour
     private void SpawnDropItem(Item item, Vector3 pos)
     {
         int id;
-        switch (item.Type)
+        
+        switch(item.Type)
         {
             case ItemType.Consumable:
                 id = 1;
                 break;
-            default:
-                id = 0;
+                default:
+                id = 0; 
                 break;
+
         }
 
-        // --- ส่วนที่แก้ไข: เพิ่มความสูงให้จุดเกิดไอเทม ---
-        Vector3 spawnPos = new Vector3(pos.x, pos.y + 0.5f, pos.z);
-        // ปรับเลข 0.5f ตามความเหมาะสมจนกว่าปากถุงจะพ้นพื้น
-
-        GameObject itemObj = Instantiate(ItemPrefabs[id], spawnPos, Quaternion.identity);
-        // ------------------------------------------
-
+        GameObject itemObj = Instantiate(itemPrefab[id], pos, Quaternion.identity);
         itemObj.AddComponent<ItemPick>();
+
         ItemPick itemPick = itemObj.GetComponent<ItemPick>();
         itemPick.Init(item, instance, PartyManager.instance);
     }
-    public void SpawnDropInventory(Item[] items, Vector3 pos)
+
+    public void  SpawnDropInventory(Item[] items, Vector3 pos)
     {
+        float radius = 1f;
+
         for (int i = 0; i < items.Length; i++)
         {
-            if (items[i] != null)
-                SpawnDropItem(items[i], pos);
+            Vector2 randomPoint = Random.insideUnitCircle * radius;
+            Vector3 randomPos = new Vector3(pos.x + randomPoint.x, pos.y, pos.z + randomPoint.y);
 
+            if (items[i] != null)
+                SpawnDropItem((Item)items[i], randomPos);
         }
     }
+
+    public void DrinkConsumbleItem(Item item, int slotId)
+    {
+        string s = string.Format("Drink: {0}", item.ItemName);
+        Debug.Log(s);
+
+        if (PartyManager.instance.SelectChars.Count > 0)
+        {
+            PartyManager.instance.SelectChars[0].Recover(item.power);
+            RemoveItemInBag(slotId);
+        }
+    }
+
 }

@@ -1,6 +1,6 @@
 using UnityEngine;
 [System.Serializable]
-public class Magic
+public class Magic 
 {
     [SerializeField]
     private int id;
@@ -10,8 +10,8 @@ public class Magic
     private string name;
     public string Name { get { return name; } }
 
-    [SerializeField]
-    private Sprite icon;
+    [SerializeField] 
+    private Sprite icon;  
     public Sprite Icon { get { return icon; } }
 
     [SerializeField]
@@ -28,7 +28,7 @@ public class Magic
 
     [SerializeField]
     private float shootTime;
-    public float ShootTime { get { return shootTime; } }
+    public float ShootTime { get {return shootTime; } }
 
     [SerializeField]
     private int loadId;
@@ -36,12 +36,12 @@ public class Magic
 
     [SerializeField]
     private int shootId;
-    public int ShootID { get { return shootId; } }
+    public int ShootID { get {return shootId; } }
 
-    public Magic(MagicData data)
+    public Magic (MagicData data)
     {
         id = data.id;
-        name = data.magicName;
+        name = data.name;
         icon = data.icon;
         range = data.range;
         power = data.power;

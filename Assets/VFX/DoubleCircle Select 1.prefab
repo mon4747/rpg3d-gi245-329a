@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6900948150650273093}
   - component: {fileID: 7652380723826810077}
   - component: {fileID: 2175807076351003732}
-  - component: {fileID: 2276901251047049737}
+  - component: {fileID: 4756438764420816358}
   m_Layer: 0
   m_Name: DoubleCircle Select 1
   m_TagString: Untagged
@@ -224,7 +224,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.85882354, g: 0.7914717, b: 0.27058828, a: 1}
+      maxColor: {r: 0, g: 0.15614729, b: 0.9137255, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -993,8 +993,8 @@ ParticleSystem:
             outSlope: 0
             tangentMode: 0
             weightedMode: 0
-            inWeight: 0
-            outWeight: 0
+            inWeight: 0.33333334
+            outWeight: 0.33333334
           - serializedVersion: 3
             time: 1
             value: 1
@@ -1002,8 +1002,8 @@ ParticleSystem:
             outSlope: 0
             tangentMode: 0
             weightedMode: 0
-            inWeight: 0
-            outWeight: 0
+            inWeight: 0.33333334
+            outWeight: 0.33333334
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
@@ -1017,8 +1017,8 @@ ParticleSystem:
             outSlope: 0
             tangentMode: 0
             weightedMode: 0
-            inWeight: 0
-            outWeight: 0
+            inWeight: 0.33333334
+            outWeight: 0.33333334
           - serializedVersion: 3
             time: 1
             value: 1
@@ -1026,8 +1026,8 @@ ParticleSystem:
             outSlope: 0
             tangentMode: 0
             weightedMode: 0
-            inWeight: 0
-            outWeight: 0
+            inWeight: 0.33333334
+            outWeight: 0.33333334
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
@@ -1047,21 +1047,21 @@ ParticleSystem:
         - serializedVersion: 3
           time: 0
           value: 0
-          inSlope: 4.1402555
-          outSlope: 4.1402555
+          inSlope: 5.6120634
+          outSlope: 5.6120634
           tangentMode: 0
           weightedMode: 0
-          inWeight: 0
-          outWeight: 0.035989717
+          inWeight: 0.33333334
+          outWeight: 0.021505374
         - serializedVersion: 3
           time: 1
-          value: 0
-          inSlope: -3.322872
-          outSlope: -3.322872
+          value: 0.000000952743
+          inSlope: -1.3779558
+          outSlope: -1.3779558
           tangentMode: 0
           weightedMode: 0
-          inWeight: 0.17737788
-          outWeight: 0
+          inWeight: 0.1758246
+          outWeight: 0.33333334
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
@@ -1392,7 +1392,7 @@ ParticleSystem:
         atime6: 0
         atime7: 0
         m_Mode: 0
-        m_ColorSpace: 0
+        m_ColorSpace: -1
         m_NumColorKeys: 2
         m_NumAlphaKeys: 2
       minGradient:
@@ -4895,7 +4895,7 @@ ParticleSystemRenderer:
   m_MeshWeighting1: 1
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
---- !u!114 &2276901251047049737
+--- !u!114 &4756438764420816358
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4904,7 +4904,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6044037666520248651}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ae75b8c062ad774db9733dcc24c707b, type: 3}
+  m_Script: {fileID: 11500000, guid: e40c68c6646e18d439003c645d62adfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MoveMarker
   lifetime: 1

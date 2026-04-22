@@ -9,12 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00f2dca55f37a414a9880ef953b2e993, type: 3}
+  m_Script: {fileID: 11500000, guid: 0807e26cc02cbf44fb5b2e6f5a2b8302, type: 3}
   m_Name: 002_ShieldA
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   id: 2
   itemName: Shield A
   type: 2
-  icon: {fileID: 21300000, guid: 8d4edf1aa6904ad4087699140af0fea6, type: 3}
+  icon: {fileID: 21300000, guid: 705be5010d173cd4ea37165c05819a05, type: 3}
   power: 5
   prefabID: 2

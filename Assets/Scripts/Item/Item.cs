@@ -1,39 +1,40 @@
 using UnityEngine;
 
-    public enum ItemType
-    {
-        Consumable,
-        Equipment,
-        Shield,
-        Armor,
-        Weapon,
-        Ammo,
-        Quest,
-        Other,
-    }
 
-    [System.Serializable]
-    public class Item
-    {
-        [SerializeField]
-        private int id;
-        public int ID { get { return id; } }
+public enum ItemType
+{
+    Consumable,
+    Equipment,
+    Shield,
+    Armor,
+    Weapon,
+    Ammo,
+    Quest,
+    Other
+}
 
-        [SerializeField]
-        private string itemName;
-        public string ItemName { get { return itemName; } }
+[System.Serializable]
+public class Item 
+{
+    [SerializeField]
+    private int id;
+    public int ID { get { return id; } }
 
-        [SerializeField]
-        private ItemType type;
-        public ItemType Type { get { return type; } }
+    [SerializeField]
+    private string itemName;
+    public string ItemName { get { return itemName; } }
 
-        [SerializeField]
-        private Sprite icon;
-        public Sprite Icon { get { return icon; } }
+    [SerializeField]
+    private ItemType type;
+    public ItemType Type { get { return type; } }
 
-        [SerializeField]
-        private int power;
-        public int Power { get { return power; } }
+    [SerializeField]
+    private Sprite icon;
+    public Sprite Icon { get { return icon; } }
+
+    [SerializeField]
+    public int power;
+    public int Power { get { return power; } }
 
     [SerializeField]
     private int prefabID;
@@ -47,7 +48,6 @@ using UnityEngine;
         icon = data.icon;
         power = data.power;
         prefabID = data.prefabID;
+        
     }
 }
-
-

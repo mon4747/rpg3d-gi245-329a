@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using UnityEngine.AI;
 using System.Collections.Generic;
@@ -20,19 +20,19 @@ public abstract class Character : MonoBehaviour
     [SerializeField]
     protected List<Magic> magicSkills = new List<Magic>();
     public List<Magic> MagicSkills
-    { get { return magicSkills; } set { magicSkills = value; } }
+    {  get { return magicSkills; } set { magicSkills = value; } }
 
     [SerializeField]
-    protected Magic curMagicCast = null;
+    protected Magic curMagicCast =null;
     public Magic CurMagicCast
-    { get { return curMagicCast; } set { curMagicCast = value; } }
+    {  get { return curMagicCast; } set { curMagicCast = value; } }
 
     [SerializeField]
     protected bool isMagicMode = false;
-    public bool IsMagicMode
-    { get { return isMagicMode; } set { isMagicMode = value; } }
+    public bool IsMagicMode 
+        { get { return isMagicMode; } set { isMagicMode = value; } }
 
-    [Header("Inventory")]
+    [Header ("Inventory")]
 
     [SerializeField]
     protected Item[] inventoryItems;
@@ -41,20 +41,32 @@ public abstract class Character : MonoBehaviour
 
     [SerializeField]
     protected Item mainWeapon;
-    public Item MainWeapon { get { return mainWeapon; } set { mainWeapon = value; } }
+    public Item MainWeapon
+    { get {  return mainWeapon; } set { mainWeapon = value; } }
 
     [SerializeField]
     protected Item shield;
-    public Item Shield { get { return shield; } set { shield = value; } }
+    public Item Shield
+    { get { return shield; } set { shield = value; } }
 
     [SerializeField]
     protected Transform shieldHand;
 
     [SerializeField]
-    protected GameObject shieldObj;
+    protected GameObject shielaobj;
 
     [SerializeField]
-    protected int defensePower = 0;
+    protected int defensepower = 0;
+
+[SerializeField]
+protected Transform weaponHand;
+
+[SerializeField]
+protected GameObject weaponObj;
+
+[SerializeField] 
+protected int attackPower = 0;
+
 
     protected VFXManager vfxManager;
     protected UIManager uiManager;
@@ -65,9 +77,13 @@ public abstract class Character : MonoBehaviour
     public int CurHP { get { return curHP; } }
 
     [SerializeField]
+    protected int maxHp = 100;
+    public int MaxHP { get { return maxHp; } }
+
+    [SerializeField]
     protected Character curCharTarget;
-    public Character CurCharTarget { get { return curCharTarget; } set { curCharTarget = value; } }
-    public float AttackRange { get { return attackRange; } }
+    public Character CurCharTarget { get { return curCharTarget; } set { curCharTarget = value; } } 
+    public float AttackRange {get { return attackRange; }}
 
     [SerializeField]
     protected float attackRange = 2f;
@@ -82,7 +98,7 @@ public abstract class Character : MonoBehaviour
 
     [SerializeField]
     protected float findingRange = 20f;
-    public float FindingRange { get { return findingRange; } }
+    public float FindingRange { get { return findingRange; }}
 
 
 
@@ -115,6 +131,13 @@ public abstract class Character : MonoBehaviour
 
     }
 
+    public void Recover(int n)
+    {
+        curHP += n;
+
+        if (curHP > maxHp)
+            curHP = maxHp;
+    }
     public void charInit(VFXManager vfxM, UIManager uiM, InventoryManager invM)
     {
         vfxManager = vfxM;
@@ -179,10 +202,10 @@ public abstract class Character : MonoBehaviour
         navAgent.SetDestination(target.transform.position);
         navAgent.isStopped = false;
 
-        if (isMagicMode)
+        if(isMagicMode)
             SetState(CharState.WalkToMagicCast);
         else
-            SetState(CharState.WalkToEnemy);
+        SetState(CharState.WalkToEnemy);
     }
 
     protected void WalkToEnemyUpdate()
@@ -253,6 +276,7 @@ public abstract class Character : MonoBehaviour
 
     protected virtual void Die()
     {
+
         navAgent.isStopped = true;
         SetState(CharState.Die);
 
@@ -268,15 +292,15 @@ public abstract class Character : MonoBehaviour
         if (curHP <= 0 || state == CharState.Die)
             return;
 
-        int damageAfter = damage - defensePower;
+        int damageAfter = damage - defensepower;
 
-        if (damageAfter < 0)
+        if(damageAfter < 0)
             damageAfter = 0;
 
         curHP -= damageAfter;
 
         curHP -= damage;
-        if (curHP <= 0)
+        if(curHP <= 0)
         {
             curHP = 0;
             Die();
@@ -287,7 +311,7 @@ public abstract class Character : MonoBehaviour
     {
         Character target = curCharTarget.GetComponent<Character>();
 
-        if (target != null)
+        if (target != null) 
             target.ReceiveDamage(attackDamage);
     }
 
@@ -295,21 +319,21 @@ public abstract class Character : MonoBehaviour
     {
         string myTag = gameObject.tag;
 
-        if ((myTag == "Hero" || myTag == "Player") && targetTag == "Enemy")
-            return true;
+        if ((myTag == "Hero" ||  myTag == "Player") && targetTag == "Enemy")
+        return true;
 
-        if (myTag == "Enemy" && (targetTag == "Hero" || targetTag == "Player"))
-            return true;
+        if (myTag == "Enemy" && (targetTag == "Hero" ||  targetTag == "Player"))
+        return true;
 
         return false;
-
+                
     }
 
     protected void MagicCastlogic(Magic magic)
     {
         Character target = curCharTarget.GetComponent<Character>();
 
-        if (target != null)
+        if(target != null)
             target.ReceiveDamage(magic.Power);
     }
 
@@ -319,7 +343,7 @@ public abstract class Character : MonoBehaviour
         Vector3 targetPos = curCharTarget.transform.position + new Vector3(0, 1f, 0);
 
         if (vfxManager != null)
-            vfxManager.ShootMagic(curMagicCast.ShootID,
+            vfxManager.ShootMagic(curMagicCast.ShootID, 
                 offsetPos,
                 targetPos,
                 curMagicCast.ShootTime);
@@ -348,7 +372,7 @@ public abstract class Character : MonoBehaviour
         StartCoroutine(ShootMagicCast(curMagicCast));
     }
 
-    private void MagicCast(Magic curMagicCast)
+    private void  MagicCast(Magic curMagicCast)
     {
         transform.LookAt(CurCharTarget.transform);
         anim.SetTrigger("MagicAttack");
@@ -369,49 +393,54 @@ public abstract class Character : MonoBehaviour
         float distance = Vector3.Distance(transform.position,
             curCharTarget.transform.position);
 
-        if (distance <= curMagicCast.Range)
+        if(distance <= curMagicCast.Range)
         {
-            navAgent.isStopped = true;
+            navAgent.isStopped =true;
             SetState(CharState.MagicCast);
 
             MagicCast(curMagicCast);
         }
     }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-    public void Recover(int n)
-    {
-        curHP += n;
-
-        if (curHP > maxHP)
-            curHP = maxHP;
-    }
-
     public void EquipShield(Item item)
     {
-        shieldObj = Instantiate(invManager.ItemPrefabs[item.PrefabID], shieldHand);
+        shielaobj = Instantiate(invManager.itemPrefab[item.PrefabID], shieldHand);
 
-        shieldObj.transform.localPosition = new Vector3(-8.5f, -4f, 3f);
-        shieldObj.transform.Rotate(-90f, 0f, 180f, Space.Self);
-        // ตำแหน่งโล่ปรับแต่งเองได้
+        shielaobj.transform.localPosition = new Vector3(-8.5f, -4f, 3f);
+        shielaobj.transform.Rotate(-90f, 0f , 180f, Space.Self);
 
-        defensePower += item.Power;
+        defensepower += item.Power;
         shield = item;
     }
 
-    public void UnEquipShield()
+    public void UnEquipShieid()
     {
-        if (shield != null)
+        if (shielaobj != null)
         {
-            defensePower -= shield.Power;
+            defensepower -= shield.Power;
             shield = null;
-            Destroy(shieldObj);
+            Destroy(shielaobj);
         }
     }
 
-=======
->>>>>>> parent of d2c8322 (ปุ่มใช้ขวดยา)
-=======
->>>>>>> parent of d2c8322 (ปุ่มใช้ขวดยา)
+    public void EquipWeapon(Item item)
+    {
+        weaponObj = Instantiate(invManager.itemPrefab[item.PrefabID], weaponHand);
+
+        weaponObj.transform.localPosition = new Vector3(7.5f, 2f, 8f);
+        weaponObj.transform.Rotate(0f, 90f , -90f, Space.Self);
+
+        attackPower += item.Power;
+        mainWeapon = item;
+    }
+
+     public void UnEquipWeapon()
+    {
+        if (weaponObj != null)
+        {
+            mainWeapon = null;
+            Destroy(weaponObj);
+        }
+    }
+
 }

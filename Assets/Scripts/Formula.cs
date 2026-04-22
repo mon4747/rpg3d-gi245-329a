@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public static class Formula
+public static class Formula 
 {
     public static Character FindClosestEnemyChar(Character me)
     {
@@ -10,7 +10,7 @@ public static class Formula
 
         RaycastHit[] hits = Physics.SphereCastAll(me.transform.position,
             me.FindingRange,
-            Vector3.up,
+            Vector3.up, 
             charLayer);
 
         for (int i = 0; i < hits.Length; i++)

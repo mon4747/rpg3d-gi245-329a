@@ -9,12 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee9a99303fefa3a45b2205ae6c8c1ad0, type: 3}
+  m_Script: {fileID: 11500000, guid: db2ee43da6c9a044bac684fb5cc3967f, type: 3}
   m_Name: 001_FireBall
   m_EditorClassIdentifier: Assembly-CSharp::MagicData
   id: 1
   magicName: Fire Ball
-  icon: {fileID: 21300000, guid: c2389dd433244bb47a33fb034a64bce5, type: 3}
+  icon: {fileID: 21300000, guid: a66af9ff56ac5e441b8091c55b011f0b, type: 3}
   range: 10
   power: 35
   loadTime: 3

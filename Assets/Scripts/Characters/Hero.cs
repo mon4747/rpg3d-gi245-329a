@@ -14,15 +14,15 @@ public class Hero : Character
         switch (state)
         {
             case CharState.Walk:
-                WalkUpdate(); 
+                WalkUpdate();
                 break;
             case CharState.WalkToEnemy:
                 WalkToEnemyUpdate();
                 break;
-            case CharState.Attack:
+             case CharState.Attack:
                 AttackUpdate();
                 break;
-            case CharState.WalkToMagicCast:
+                case CharState.WalkToMagicCast:
                 WalkToMagicCastUpdate();
                 break;
         }

@@ -24,29 +24,37 @@ public class PartyManager : MonoBehaviour
         foreach (Character c in members)
         {
             c.charInit(VFXManager.instance, UIManager.instance, InventoryManager.instance);
+            
+
         }
 
         SelectSingleHero(0);
 
-        members[0].MagicSkills.Add(new Magic(VFXManager.instance.MagicDatas[0]));
-        members[1].MagicSkills.Add(new Magic(VFXManager.instance.MagicDatas[1]));
+        members[0].MagicSkills.Add(new Magic(VFXManager.instance.MagicData[0]));
+        members[1].MagicSkills.Add(new Magic(VFXManager.instance.MagicData[1]));
 
-        InventoryManager.instance.AddItem(members[0], 0); // Health Potion
-        InventoryManager.instance.AddItem(members[0], 1); // Sword
+        InventoryManager.instance.AddItem(members[0], 0);
+        InventoryManager.instance.AddItem(members[0], 1);
+        InventoryManager.instance.AddItem(members[0], 2);
         InventoryManager.instance.AddItem(members[0], 3);
         InventoryManager.instance.AddItem(members[0], 4);
         InventoryManager.instance.AddItem(members[0], 5);
+        InventoryManager.instance.AddItem(members[0], 6);
+        InventoryManager.instance.AddItem(members[0], 7);
+        InventoryManager.instance.AddItem(members[0], 8);
+        InventoryManager.instance.AddItem(members[0], 9);
 
-        InventoryManager.instance.AddItem(members[1], 0); // Health Potion
-        InventoryManager.instance.AddItem(members[1], 1); // Sword
-        InventoryManager.instance.AddItem(members[1], 2); // Shield
-        InventoryManager.instance.AddItem(members[1], 3); // Shield B
-        InventoryManager.instance.AddItem(members[1], 7);
-        InventoryManager.instance.AddItem(members[1], 8);
-        InventoryManager.instance.AddItem(members[1], 9);
+        InventoryManager.instance.AddItem(members[1], 0);
+        InventoryManager.instance.AddItem(members[1], 1);
+        InventoryManager.instance.AddItem(members[1], 2);
+        InventoryManager.instance.AddItem(members[1], 3);
+        InventoryManager.instance.AddItem(members[1], 4);
+        InventoryManager.instance.AddItem(members[1], 5);
 
 
         UIManager.instance.ShowMagicToggles();
+
+
 
     }
     // Update is called once per frame

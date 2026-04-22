@@ -10,6 +10,7 @@ public class ItemPick : MonoBehaviour
     private InventoryManager inventoryManager;
     private PartyManager partyManager;
 
+
     public void Init(Item item, InventoryManager invManager, PartyManager ptyManager)
     {
         this.item = item;
@@ -17,21 +18,17 @@ public class ItemPick : MonoBehaviour
         partyManager = ptyManager;
     }
 
-    private void PickUpItem(Character hero)
+    public void PickUpItem(Character hero)
     {
-        if (inventoryManager.AddItem(hero, item.ID))
-        {
+        if (inventoryManager.AddItem(hero,item.ID))
             Destroy(gameObject);
-        }
     }
 
     private void OnMouseDown()
     {
         Debug.Log("Pick Up");
 
-        if (partyManager.SelectChars.Count > 0)
-        {
+        if(partyManager.SelectChars.Count > 0) 
             PickUpItem(partyManager.SelectChars[0]);
-        }
     }
 }

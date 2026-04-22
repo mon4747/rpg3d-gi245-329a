@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 
 public class LeftClick : MonoBehaviour
 {
-
+    
 
     private Camera cam;
 
@@ -33,18 +33,18 @@ public class LeftClick : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            startPos = Input.mousePosition;
+            startPos =Input.mousePosition;
 
             if (EventSystem.current.IsPointerOverGameObject())
-                return;
-
+            return;
+            
             ClearEverything();
         }
 
         if (Input.GetMouseButton(0))
         {
             if (EventSystem.current.IsPointerOverGameObject())
-                return;
+            return;
 
             UpdateSelectionBox(Input.mousePosition);
         }
@@ -57,11 +57,11 @@ public class LeftClick : MonoBehaviour
     }
 
     private void SelectCharacter(RaycastHit hit)
-    {
+    { 
         Character hero = hit.collider.GetComponent<Character>();
         Debug.Log("Selected Char:" + hit.collider.gameObject);
 
-        PartyManager.instance.SelectChars.Add(hero);
+       PartyManager.instance.SelectChars.Add(hero);
         hero.ToggleRingSelection(true);
         UIManager.instance.ShowMagicToggles();
     }
@@ -73,7 +73,7 @@ public class LeftClick : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, 1000, layerMask))
         {
-            switch (hit.collider.tag)
+            switch(hit.collider.tag)
             {
                 case "Player":
                 case "Hero":
@@ -81,7 +81,7 @@ public class LeftClick : MonoBehaviour
                     break;
             }
         }
-
+        
     }
 
     private void ClearRingSelection()

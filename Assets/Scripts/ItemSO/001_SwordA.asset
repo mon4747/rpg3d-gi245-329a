@@ -9,12 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00f2dca55f37a414a9880ef953b2e993, type: 3}
+  m_Script: {fileID: 11500000, guid: 0807e26cc02cbf44fb5b2e6f5a2b8302, type: 3}
   m_Name: 001_SwordA
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   id: 1
   itemName: Sword A
   type: 4
-  icon: {fileID: 21300000, guid: 81e46a2e72343304ba41184c9f171e40, type: 3}
-  power: 20
+  icon: {fileID: 21300000, guid: aa4ebaa62bc04794f8a195138e132d28, type: 3}
+  power: 10
   prefabID: 0

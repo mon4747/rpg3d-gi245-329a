@@ -12,8 +12,8 @@ public class VFXManager : MonoBehaviour
     public GameObject[] MagicVFX { get { return magicVFX; } }
 
     [SerializeField]
-    private MagicData[] magicDatas;
-    public MagicData[] MagicDatas {  get { return magicDatas; } }
+    private MagicData[] magicData;
+    public MagicData[] MagicData { get { return magicData; } }
 
     private void Awake()
     {
@@ -21,17 +21,16 @@ public class VFXManager : MonoBehaviour
 
     }
 
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+       
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        
     }
 
     public void LoadMagic(int id, Vector3 posA, float time)

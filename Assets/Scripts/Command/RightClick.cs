@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -72,17 +72,17 @@ public class RightClick : MonoBehaviour
             pos + new Vector3(0f, 1f, 0f), Quaternion.identity);
     }
 
-    private void CommandToAttack(RaycastHit hit, List<Character> heroes)
+    private void CommandToAttack(RaycastHit hit, List<Character> heroes  )
     {
-
+       
         Character target = hit.collider.GetComponent<Character>();
         Debug.Log("Attack: " + target);
 
-        foreach (Character h in heroes)
+        foreach(Character h in heroes)
         {
             h.ToAttackCharacter(target);
         }
     }
-
+  
 
 }

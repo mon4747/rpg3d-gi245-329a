@@ -9,12 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee9a99303fefa3a45b2205ae6c8c1ad0, type: 3}
+  m_Script: {fileID: 11500000, guid: db2ee43da6c9a044bac684fb5cc3967f, type: 3}
   m_Name: 000_PowerGlow
   m_EditorClassIdentifier: Assembly-CSharp::MagicData
   id: 0
   magicName: Power Glow
-  icon: {fileID: 21300000, guid: c703cffa39f660e4ba91cad1bc35f7e5, type: 3}
+  icon: {fileID: 21300000, guid: f5fa0806cbb3a9341957394a1441665a, type: 3}
   range: 10
   power: 20
   loadTime: 3
